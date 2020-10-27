@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Nav, NavItem, NavLink } from 'reactstrap'
+import { Nav, NavItem } from 'reactstrap'
 
 class Footer extends Component {
     render() {
@@ -7,7 +7,7 @@ class Footer extends Component {
             logged_in,
             sign_in_route,
             sign_up_route,
-            sign_out_route,
+            sign_out_route
         } = this.props
         return (
             <>

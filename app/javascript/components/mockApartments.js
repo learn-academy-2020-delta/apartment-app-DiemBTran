@@ -7,7 +7,7 @@ let mockApts = [
         city: "London",
         state: "UK",
         manager: "Ms. Hudson",
-        emali: "ms-hud@uk.com",
+        email: "ms-hud@uk.com",
         price: "1000",
         bedrooms: 2,
         bathrooms: 2,
@@ -19,10 +19,12 @@ let mockApts = [
         city: "San Diego",
         state: "CA",
         manager: "Mr. Diego",
-        emali: "mr-diego@ca.com",
+        email: "mr-diego@ca.com",
         price: "1800",
         bedrooms: 2,
         bathrooms: 2,
         pets: "no"
     }
 ]
+
+export default mockApts
