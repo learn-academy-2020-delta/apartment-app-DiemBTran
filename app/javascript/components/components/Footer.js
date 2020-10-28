@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Nav, NavItem } from 'reactstrap'
 
-class Footer extends Component {
+export default class Footer extends Component {
     render() {
         const {
             logged_in,
@@ -41,4 +41,3 @@ class Footer extends Component {
     }
 }
 
-export default Footer

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class ApartmentEdit extends Component {
+export default class ApartmentEdit extends Component {
     render() {
         return (
             <>
@@ -9,5 +9,3 @@ class ApartmentEdit extends Component {
         )
     }
 }
-
-export default ApartmentEdit

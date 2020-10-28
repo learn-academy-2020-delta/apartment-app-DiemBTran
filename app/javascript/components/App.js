@@ -18,12 +18,16 @@ import {
 } from 'react-router-dom'
 
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       apartments: mockApartments
     }
+  }
+
+  createNewApartment = (newApartment) => {
+    console.log(newApartment);
   }
 
   render() {
@@ -45,7 +49,18 @@ class App extends Component {
             render={(props) => <ApartmentIndex apartments={this.state.apartments} />} />
           <Route path="/apartmentedit/:id" component={ApartmentEdit} />
 
-          <Route path="/apartmentnew" component={ApartmentNew} />
+          {logged_in &&
+            <Route
+              path="/apartmentnew"
+              render={(props) =>
+                <ApartmentNew
+                  createNewApartment={this.createNewApartment}
+                  current_user={current_user}
+                />
+              }
+            />
+
+          }
           <Route
             path="/apartmentshow/:id"
             render={(props) => {
@@ -71,5 +86,3 @@ class App extends Component {
     );
   }
 }
-
-export default App
