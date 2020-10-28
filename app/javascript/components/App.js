@@ -30,6 +30,10 @@ export default class App extends Component {
     console.log(newApartment);
   }
 
+  updateApartment = (apartment, id) => {
+    console.log("apartment", apartment, "id", id);
+  }
+
   render() {
     const {
       logged_in,
@@ -38,17 +42,34 @@ export default class App extends Component {
       sign_out_route,
       current_user
     } = this.props
+    console.log("current user:", current_user);
     return (
       <Router>
         <Header />
 
         <Switch>
+          //Unprotected Routes
           <Route exact path="/" component={Home} />
+
           <Route
             path="/apartmentindex"
-            render={(props) => <ApartmentIndex apartments={this.state.apartments} />} />
-          <Route path="/apartmentedit/:id" component={ApartmentEdit} />
+            render={(props) => <ApartmentIndex apartments={this.state.apartments} />}
+          />
 
+          <Route
+            path="/apartmentshow/:id"
+            render={(props) => {
+              let localid = props.match.params.id
+              let apartment = this.state.apartments.find(apt => {
+                return apt.id === parseInt(localid)
+              })
+              return (
+                <ApartmentShow apartment={apartment} />
+              )
+            }}
+          />
+
+          //Protected Routes
           {logged_in &&
             <Route
               path="/apartmentnew"
@@ -59,18 +80,27 @@ export default class App extends Component {
                 />
               }
             />
-
           }
-          <Route
-            path="/apartmentshow/:id"
-            render={(props) => {
-              let localid = props.match.params.id
-              let apartment = this.state.apartments.find(apt => apt.id === parseInt(localid))
-              return (
-                <ApartmentShow apartment={apartment} />
-              )
-            }}
-          />
+
+          {logged_in &&
+            <Route
+              path="/apartmentedit/:id"
+              render={(props) => {
+                let localid = props.match.params.id
+                let apartment = this.state.apartments.find(apt => {
+                  return apt.id === parseInt(localid)
+                })
+                return (
+                  <ApartmentEdit
+                    updateApartment={this.updateApartment}
+                    current_user={current_user}
+                    apartment={apartment}
+                  />
+                )
+              }}
+            />
+          }
+
           <Route component={NotFound} />
         </Switch>
 
